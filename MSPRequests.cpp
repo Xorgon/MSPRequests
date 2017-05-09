@@ -4,8 +4,17 @@
 
 #include "MSPRequests.h"
 
+/**
+ * Allows declaration without initialization.
+ */
 MSPRequests::MSPRequests() {}
 
+/**
+ * Initializes MSPRequests object.
+ * @param baudRate Baud rate at which to run the SoftwareSerial connection.
+ * @param softSerialRX SoftwareSerial RX.
+ * @param softSerialTX SoftwareSerial TX.
+ */
 MSPRequests::MSPRequests(uint32_t baudRate, uint8_t softSerialRX, uint8_t softSerialTX) {
     mspSerial = new SoftwareSerial(softSerialRX, softSerialTX);
     mspSerial->begin(baudRate);
@@ -33,6 +42,12 @@ void MSPRequests::sendMSPRequest(uint8_t cmd, uint8_t *data, uint8_t n_bytes) {
     mspSerial->write(checksum);
 }
 
+
+/**
+ * Sends an MSP request for attitude, receives the results and parses them.
+ *
+ * @param attitude Array of length 3 to contain {roll, pitch, yaw}.
+ */
 void MSPRequests::getAttitude(float *attitude) {
 
     // Send MSP Request:

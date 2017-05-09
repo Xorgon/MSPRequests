@@ -16,7 +16,7 @@ public:
 
     MSPRequests(uint32_t baudRate, uint8_t softSerialRX, uint8_t softSerialTX);
 
-    void getAttitude(float attitude[]);
+    void getAttitude(float attitude[3]);
 
 private:
 
